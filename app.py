@@ -2,6 +2,7 @@ import streamlit as st
 from core import auth, db
 import views
 import chat_page
+import symptom_page
 
 st.set_page_config(page_title="MediMind AI", page_icon="🩺", layout="wide")
 db.init_db()
@@ -16,7 +17,10 @@ h1,h2,h3{color:#0e7490}
 )
 
 NAV = {
-    "patient": ["Home", "AI Doctor", "Emergency Check", "Health Records", "About"],
+    "patient": [
+        "Home", "AI Doctor", "Symptom Checker", "Emergency Check",
+        "Health Records", "About",
+    ],
     "doctor": ["Home", "Emergency Check", "About"],
 }
 
@@ -73,6 +77,8 @@ if page == "Home":
     views.page_home(user)
 elif page == "AI Doctor":
     chat_page.page_chat(user)
+elif page == "Symptom Checker":
+    symptom_page.page_symptoms(user)
 elif page == "Emergency Check":
     views.page_emergency()
 elif page == "Health Records":
